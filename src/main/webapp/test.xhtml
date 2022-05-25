@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+    <title>PrimeFaces Test</title>
+    <h:outputScript name="test.js"/>
+    <h:outputStylesheet name="test.css"/>
+</h:head>
+<h:body>
+    <f:view locale="#{languageBean.locale}">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem">
+            <h1>#{testView.string}</h1>
+            <h:form id="frmTest" style="padding: 1rem">
+                <div>
+                <span class="ui-float-label">
+                     <p:inputNumber id="mileage-start" styleClass="mileage-start"
+                                    value="#{testView.mileageStart}"
+                                    required="true" thousandSeparator="." padControl="false">
+                            <p:ajax update="mileage-start"/>
+                     </p:inputNumber>
+                     <p:outputLabel for="mileage-start" value="#{message['test.form.label']}"/>
+                </span>
+                </div>
+                <div style="margin-top: 1rem; margin-bottom: 1rem">
+                    <p:commandButton styleClass="btn" id="btn"
+                                     value="#{message['test.form.button']}"/>
+                </div>
+            </h:form>
+
+            <h:form>
+                <p:sidebar id="overviewMenuDialog" widgetVar="overviewMenuDialog"
+                           showCloseIcon="false">
+                    <div id="footer">
+                        <!-- DE -->
+                        <p:commandLink action="#{languageBean.setLanguage(message['test.form.german'])}"
+                                       id="languageGerman" ajax="false"
+                                       value="#{message['test.form.german']}" styleClass="overviewMenuSmallText"/>
+                        <!-- | -->
+                        <h:outputText id="verticalDivider3" value="|" escape="false"/>
+                        <!-- EN -->
+                        <p:commandLink action="#{languageBean.setLanguage(message['test.form.english'])}"
+                                       id="languageEnglish" ajax="false"
+                                       value="#{message['test.form.english']}"/>
+                    </div>
+                </p:sidebar>
+                <p:commandButton styleClass="menuButton" id="dynaButton" type="button"
+                                 icon="imageMenu" onclick="PF('overviewMenuDialog').show();"
+                                 value="#{message['test.language.button']}"/>
+
+            </h:form>
+
+        </div>
+    </f:view>
+</h:body>
+</html>
