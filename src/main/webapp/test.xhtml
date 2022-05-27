@@ -19,7 +19,7 @@
                 <span class="ui-float-label">
                      <p:inputNumber id="mileage-start" styleClass="mileage-start"
                                     value="#{testView.mileageStart}"
-                                    required="true" thousandSeparator="." padControl="false">
+                                    required="true" thousandSeparator="." decimalSeparator="," padControl="false">
                             <p:ajax update="mileage-start"/>
                      </p:inputNumber>
                      <p:outputLabel for="mileage-start" value="#{message['test.form.label']}"/>
